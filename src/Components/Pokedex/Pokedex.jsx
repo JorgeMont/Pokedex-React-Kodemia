@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Pokedex.scss";
-import Card from "@mui/material/Card";
-import CardSolo from "../CardSolo/CardSolo";
 import getPokemon from "../../Helpers/getPokemon.js";
-import CardsTodos from "../CardsTodos/CardsTodos";
+import SinglePokemon from "../SinglePokemon/SinglePokemon";
+import PokemonGrid from "../PokemonGrid/PokemonGrid";
 
 const apiURL = `https://pokeapi.co/api/v2/pokemon/`;
 
 const Pokedex = () => {
   const [pokeList, setPokeList] = useState([]);
+  const [selectedPoke, setSelectedPoke] = useState(0);
 
   //Cuando nace el componente
   useEffect(() => {
@@ -17,22 +17,19 @@ const Pokedex = () => {
       const pokeData = await getPokemon(apiURL);
       setPokeList(pokeData.results);
     })();
-    // console.log(pokeList);
   }, []);
 
   return (
     <>
       <main className="pokeApp">
         <section className="CardSolo">
-            <Card variant="outlined">
-                {<CardSolo />}
-            </Card>
+            <SinglePokemon pokeID={selectedPoke} />
         </section>
         <section className="CardVarios">
           {pokeList.length === 0 ? (
             <p>PokeList está vacio</p>
           ) : (
-            <CardsTodos listaPoke={pokeList} />
+            <PokemonGrid listaPokes={pokeList} />
           )}
         </section>
       </main>

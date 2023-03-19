@@ -1,4 +1,5 @@
 import React from "react";
+import './ImagePoke.scss';
 
 const ImagePoke = ({url}) => {
     // console.log(url);
