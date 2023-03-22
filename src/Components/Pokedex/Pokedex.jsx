@@ -19,6 +19,10 @@ const Pokedex = () => {
     })();
   }, []);
 
+  const updatePokemon = (id) => {
+    setSelectedPoke(id)
+  }
+
   return (
     <>
       <main className="pokeApp">
@@ -29,7 +33,7 @@ const Pokedex = () => {
           {pokeList.length === 0 ? (
             <p>PokeList está vacio</p>
           ) : (
-            <PokemonGrid listaPokes={pokeList} />
+            <PokemonGrid listaPokes={pokeList} selectPoke={updatePokemon} />
           )}
         </section>
       </main>
